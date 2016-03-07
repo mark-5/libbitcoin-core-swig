@@ -1,0 +1,6 @@
+\.o$
+\..*\.PL$
+^scripts/
+^swig/
+
+#!include_default
