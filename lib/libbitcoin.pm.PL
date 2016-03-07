@@ -13,7 +13,9 @@ package libbitcoin;
 use strict;
 use warnings;
 
-our \$VERSION = '0.0.1';
+BEGIN {
+    our \$VERSION = '0.0.1';
+}
 
 BEGIN {
     require XSLoader;

@@ -14,6 +14,8 @@ do
     cxx_file=$cxx_dir/${base/%.i/_wrap.cxx}
     perl_file=$perl_dir/${base/%.i/.pm}
 
+    echo $SWIG $INC -c++ -perl -o $cxx_file -outdir $perl_dir $file
     $SWIG $INC -c++ -perl -o $cxx_file -outdir $perl_dir $file
-    $PERL -pi -e 's/^bootstrap .*/bootstrap libbitcoin;/' $perl_file
+    echo $PERL -pi -e 's/^bootstrap .*/bootstrap libbitcoin;/' $perl_file
+    $PERL -pi -e 's/^bootstrap .*/require libbitcoin; bootstrap libbitcoin;/' $perl_file
 done
