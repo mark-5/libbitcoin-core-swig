@@ -22,7 +22,7 @@ BEGIN {
     XSLoader::load('libbitcoin');
 }
 
-@{[ map {"use $_;"} @modules ]}
+@{[ map {"#use $_;"} @modules ]}
 
 1;
 __END__
