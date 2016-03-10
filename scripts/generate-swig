@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
 
-DIR=${1-swig}
-INC=${INC-"-I/usr/include -I/usr/local/include"}
+DIR=${1-swig/libbitcoin}
+INC=${INC-"-Iswig -I/usr/include -I/usr/local/include"}
 PERL=${PERL-perl}
 SWIG=${SWIG-swig}
 

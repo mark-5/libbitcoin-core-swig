@@ -1,5 +1,7 @@
 %module "libbitcoin::chain"
 %{
+#undef seed
+
 #include <bitcoin/bitcoin.hpp>
 using namespace libbitcoin;
 %}

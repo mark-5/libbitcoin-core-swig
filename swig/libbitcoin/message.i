@@ -1,6 +1,7 @@
 %module "libbitcoin::message"
 %{
 #undef filter_add
+#undef seed
 
 #include <bitcoin/bitcoin.hpp>
 using namespace libbitcoin;
@@ -36,7 +37,7 @@ using namespace libbitcoin;
 %include <bitcoin/bitcoin/message/get_data.hpp>
 %include <bitcoin/bitcoin/message/get_headers.hpp>
 %include <bitcoin/bitcoin/message/headers.hpp>
-%include <bitcoin/bitcoin/message/heading.hpp>
+%import <bitcoin/bitcoin/message/heading.hpp>
 %include <bitcoin/bitcoin/message/memory_pool.hpp>
 %include <bitcoin/bitcoin/message/merkle_block.hpp>
 %include <bitcoin/bitcoin/message/not_found.hpp>

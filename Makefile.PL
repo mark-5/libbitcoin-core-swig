@@ -5,7 +5,7 @@ use ExtUtils::MakeMaker;
 use File::Find;
 use File::Spec::Functions qw(abs2rel catfile splitdir);
 
-my @modules = find_swig_modules('swig');
+my @modules = find_swig_modules(catfile(qw(swig libbitcoin)));
 local $ENV{SWIG_MODULES} = join(' ', @modules);
 
 my @pls = find_pls('lib', 'src');
