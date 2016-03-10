@@ -4,8 +4,17 @@
 using namespace libbitcoin;
 %}
 
+/*
+    TODO: handle operator overloading
+*/
 %ignore *::operator==;
 %ignore *::operator!=;
+/*
+    TODO: handle undefined symbols from satoshi_fixed_size
+*/
+%ignore libbitcoin::chain::input::satoshi_fixed_size;
+%ignore libbitcoin::chain::output::satoshi_fixed_size;
+%ignore libbitcoin::chain::transaction::satoshi_fixed_size;
 
 %include std_except.i
 %include std_vector.i

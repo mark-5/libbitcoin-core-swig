@@ -10,10 +10,13 @@ using namespace libbitcoin;
 %ignore *::operator!=;
 
 /*
+    TODO: handle undefined symbols from verack::to_data(writer& sink)
+*/
+%ignore libbitcoin::message::verack::to_data(writer& sink) const;
+
 %include std_except.i
 %include std_vector.i
 %include stdint.i
-*/
 
 %import <bitcoin/bitcoin/compat.hpp>
 %import <bitcoin/bitcoin/define.hpp>

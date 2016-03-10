@@ -13,14 +13,10 @@ package libbitcoin;
 use strict;
 use warnings;
 
-BEGIN {
-    our \$VERSION = '0.0.1';
-}
+our \$VERSION = '0.0.1';
 
-BEGIN {
-    require XSLoader;
-    XSLoader::load('libbitcoin');
-}
+require XSLoader;
+XSLoader::load('libbitcoin');
 
 @{[ map {"#use $_;"} @modules ]}
 
