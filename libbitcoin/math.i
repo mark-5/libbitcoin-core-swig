@@ -23,11 +23,14 @@ using namespace libbitcoin;
 %import <bitcoin/bitcoin/compat.hpp>
 %import <bitcoin/bitcoin/define.hpp>
 
-%import <bitcoin/bitcoin/math/hash.hpp>
-%import <bitcoin/bitcoin/math/uint256.hpp>
-%import <bitcoin/bitcoin/math/hash_number.hpp>
-%import <bitcoin/bitcoin/math/elliptic_curve.hpp>
-%import <bitcoin/bitcoin/math/checksum.hpp>
-%import <bitcoin/bitcoin/math/crypto.hpp>
-%import <bitcoin/bitcoin/math/script_number.hpp>
-%import <bitcoin/bitcoin/math/stealth.hpp>
+%import <bitcoin/bitcoin/utility/array_slice.hpp>
+%include <bitcoin/bitcoin/utility/data.hpp>
+
+%include <bitcoin/bitcoin/math/hash.hpp>
+%include <bitcoin/bitcoin/math/uint256.hpp>
+%include <bitcoin/bitcoin/math/hash_number.hpp>
+%include <bitcoin/bitcoin/math/elliptic_curve.hpp>
+%include <bitcoin/bitcoin/math/checksum.hpp>
+%include <bitcoin/bitcoin/math/crypto.hpp>
+%include <bitcoin/bitcoin/math/script_number.hpp>
+%include <bitcoin/bitcoin/math/stealth.hpp>

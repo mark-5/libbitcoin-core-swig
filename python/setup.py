@@ -26,7 +26,7 @@ for cxx in find_cxx('libbitcoin'):
     extension = Extension(ext_name,
         extra_compile_args = ['-std=c++11'],
         libraries          = ['bitcoin', 'boost_system'],
-        sources            = [cxx]
+        sources            = [cxx],
     )
     extensions.append(extension)
 
