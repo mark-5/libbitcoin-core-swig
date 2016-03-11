@@ -34,7 +34,9 @@ using namespace libbitcoin;
 %import <bitcoin/bitcoin/define.hpp>
 
 /*
-%include typemap/data_slice.i
+including data_slice defintion is needed to address
+src/libbitcoin/wallet_wrap.cxx:12431:28: error: no matching function for call to ‘libbitcoin::array_slice<unsigned char>::array_slice()’
+     libbitcoin::data_slice arg2 ;
 */
 %import <bitcoin/bitcoin/utility/array_slice.hpp>
 %include <bitcoin/bitcoin/utility/data.hpp>

@@ -42,6 +42,7 @@ using namespace libbitcoin;
 %include <bitcoin/bitcoin/message/get_data.hpp>
 %include <bitcoin/bitcoin/message/get_headers.hpp>
 %include <bitcoin/bitcoin/message/headers.hpp>
+/* TODO: %include <bitcoin/bitcoin/message/heading.hpp> */
 %import <bitcoin/bitcoin/message/heading.hpp>
 %include <bitcoin/bitcoin/message/memory_pool.hpp>
 %include <bitcoin/bitcoin/message/merkle_block.hpp>
