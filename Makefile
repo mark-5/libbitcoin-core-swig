@@ -29,16 +29,18 @@ perl_swig: $(foreach f,$(SWIGFILES),$(basename $(f)).pm)
 	$(foreach f,$(shell find libbitcoin -name *.pm),cp $(f) perl/lib/$(f);)
 
 clean_perl_swig:
+	rm -f $(foreach f,$(SWIGFILES),$(basename $(f))_wrap.cxx.perl)
 	rm -f $(foreach f,$(SWIGFILES),$(basename $(f)).pm)
 	rm -f $(foreach f,$(SWIGFILES),perl/src/$(basename $(f)).cxx)
 	rm -f $(foreach f,$(SWIGFILES),perl/lib/$(basename $(f)).pm)
 
 perl_dist: perl_swig
 	cd perl && $(PERL) Makefile.PL
+	cd perl && make
 	cd perl && make dist
 
 clean_perl_dist:
-	cd perl && make clean || true
+	cd perl && make distclean || true
 
 clean_perl: clean_perl_dist clean_perl_swig
 
@@ -53,15 +55,17 @@ python_swig: $(foreach f,$(SWIGFILES),$(basename $(f)).py)
 	$(foreach f,$(shell find libbitcoin -name *.py),cp $(f) python/$(f);)
 
 python_dist: python_swig
-	cd python && python setup.py bdist
+	cd python && $(PYTHON) setup.py build
+	cd python && $(PYTHON) setup.py bdist
 
 clean_python: clean_python_swig clean_python_dist
 
 clean_python_swig:
+	rm -f $(foreach f,$(SWIGFILES),$(basename $(f))_wrap.cxx.python)
 	rm -f $(foreach f,$(SWIGFILES),$(basename $(f)).py)
 	rm -f $(foreach f,$(SWIGFILES),python/$(basename $(f)).cxx)
-	rm -f $(foreach f,$(SWIGFILES),python/$(basename $(f)).pm)
+	rm -f $(foreach f,$(SWIGFILES),python/$(basename $(f)).py)
 
 clean_python_dist:
-	cd python && python setup.py clean || true
+	cd python && $(PYTHON) setup.py clean --all || true
 
