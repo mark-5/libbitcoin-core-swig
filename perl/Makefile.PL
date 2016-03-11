@@ -99,6 +99,7 @@ sub const_cccmd {
 }
 
 sub postamble {
+    # SWIGLINKCMD and SWIGLINKARG are largely copied from $(INST_DYNAMIC) target
     return <<"__END__";
 SWIGINSTDIR = \$(INST_ARCHAUTODIR)\$(DFSEP)
 SWIGCPPDIR  = src\$(DFSEP)libbitcoin\$(DFSEP)

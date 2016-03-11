@@ -12,6 +12,12 @@ package libbitcoin;
 use strict;
 use warnings;
 
+=head1 NAME
+
+libbitcoin - perl bindings for libbitcoin
+
+=cut
+
 our \$VERSION = '0.0.1';
 
 require XSLoader;
