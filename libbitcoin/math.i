@@ -1,13 +1,14 @@
 #ifdef SWIGPERL
 %module "libbitcoin::math"
+%{
+#undef filter_add
+#undef seed
+%}
 #endif
 #ifdef SWIGPYTHON
 %module(package="libbitcoin.math") math
 #endif
 %{
-#undef filter_add
-#undef seed
-
 #include <bitcoin/bitcoin.hpp>
 using namespace libbitcoin;
 %}

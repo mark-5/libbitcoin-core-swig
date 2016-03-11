@@ -14,4 +14,5 @@ make
 * handle operator overloading
 * cleanup undefined libbitcoin symbols
 * cleanup swig warnings
+* cleanup python compile warnings
 * make arguments and return values more language friendly
