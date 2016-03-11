@@ -1,4 +1,9 @@
-%module "libbitcoin::message"
+#ifdef SWIGPERL
+%module(package="libbitcoin::message") message
+#endif
+#ifdef SWIGPYTHON
+%module(package="libbitcoin.message") message
+#endif
 %{
 #undef filter_add
 #undef seed

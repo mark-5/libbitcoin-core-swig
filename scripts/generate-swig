@@ -4,7 +4,7 @@ set -e
 DIR=${1-swig/libbitcoin}
 INC=${INC-"-Iswig -I/usr/include -I/usr/local/include"}
 PERL=${PERL-perl}
-SWIG=${SWIG-swig3.0}
+SWIG=${SWIG-swig}
 
 for file in $(find $DIR -name *.i)
 do

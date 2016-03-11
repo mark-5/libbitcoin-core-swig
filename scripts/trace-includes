@@ -1,0 +1,110 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+use File::Spec::Functions qw(catfile);
+use Getopt::Long qw(:config bundling);
+use IO::File;
+use List::MoreUtils qw(uniq);
+use Pod::Usage qw(pod2usage);
+
+=pod
+
+=head1 NAME
+
+trace_includes
+
+=head1 SYNOPSIS
+
+trace_includes [OPTIONS] [HEADERS]
+
+=head1 ARGUMENTS
+
+=head2 HEADERS
+
+Trace includes from HEADERS. Defaults to bitcoin/bitcoin.hpp
+
+=head1 OPTIONS
+
+=head2 B<-I=PATH> B<--include=PATH>
+
+Lookup included header files from PATH. Defaults to scripts/libbitcoin-inc output.
+
+=head2 B<--only=REGEX>
+
+Only trace includes from files matching REGEX. Defaults to 'bitcoin'.
+
+=cut
+
+my %opts = (
+    include => [`./scripts/libbitcoin-inc`],
+    only    => 'bitcoin',
+);
+GetOptions(
+    \%opts,
+    'help|h',
+    'include|I=s@',
+    'only=s',
+) or pod2usage(-verbose => 1);
+pod2usage(-verbose => 1) if $opts{help};
+
+my (@headers) = @ARGV;
+unless (@headers) {
+    @headers = ('bitcoin/bitcoin.hpp');
+}
+
+my @includes = uniq map { find_includes($_), $_ } @headers;
+for my $include (@includes) {
+    print "$include\n";
+}
+
+sub find_includes {
+    my ($header) = @_;
+    my $path = resolve_include($header);
+    my $fh   = IO::File->new($path, 'r')
+        or die "Could not open $path for reading: $!";
+
+    my @includes;
+    while (my $line = $fh->getline) {
+        my $include = parse_include($line) or next;
+        next unless $include =~ /$opts{only}/;
+        next unless has_public_api($include);
+
+        push @includes, find_includes($include), $include;
+    }
+    return @includes;
+}
+
+sub parse_include {
+    my ($line) = @_;
+    my ($file) = $line =~ /
+        \s*
+        \#include
+        \s+
+        ['"<]
+        ([^'"<>]+)
+        ['">]
+    /x;
+    return $file;
+}
+
+sub resolve_include {
+    my ($file) = @_;
+    for my $include_dir (@{$opts{include}}) {
+        my $resolved = catfile($include_dir, $file);
+        return $resolved if -f $resolved;
+    }
+    die "Could not resolve path for $file\n";
+}
+
+sub has_public_api {
+    my ($file) = @_;
+    my $path = resolve_include($file);
+    my $fh   = IO::File->new($path, 'r')
+        or die "Could not open $path for reading: $!";
+
+    while (my $line = $fh->getline) {
+        return 1 if $line =~ /\bBC_(?:API|CONST)/;
+    }
+
+    return;
+}

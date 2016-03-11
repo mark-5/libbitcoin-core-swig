@@ -1,4 +1,9 @@
-%module "libbitcoin::math"
+#ifdef SWIGPERL
+%module(package="libbitcoin::math") math
+#endif
+#ifdef SWIGPYTHON
+%module(package="libbitcoin.math") math
+#endif
 %{
 #undef filter_add
 #undef seed

@@ -1,0 +1,19 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+use File::Spec::Functions qw(catfile);
+use List::MoreUtils qw(firstval);
+
+my @guesses = qw(/usr/include /usr/local/include);
+my $install = firstval { is_libbitcon_incdir($_) } @guesses;
+if ($install) {
+    print "$install";
+} else {
+    die "Couldn't find libbitcoin inc dir\n";
+}
+
+sub is_libbitcon_incdir {
+    my ($path) = @_;
+    my $header = catfile($path, qw(bitcoin bitcoin.hpp));
+    return -f $header;
+}

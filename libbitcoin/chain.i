@@ -1,4 +1,9 @@
-%module "libbitcoin::chain"
+#ifdef SWIGPERL
+%module(package="libbitcoin::chain") chain
+#endif
+#ifdef SWIGPYTHON
+%module(package="libbitcoin.chain") chain
+#endif
 %{
 #undef seed
 

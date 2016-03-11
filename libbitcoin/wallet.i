@@ -1,4 +1,9 @@
-%module "libbitcoin::wallet"
+#ifdef SWIGPERL
+%module(package="libbitcoin::wallet") wallet
+#endif
+#ifdef SWIGPYTHON
+%module(package="libbitcoin.wallet") wallet
+#endif
 %{
 #undef filter_add
 #undef seed
