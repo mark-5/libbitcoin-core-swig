@@ -22,9 +22,11 @@ python: python_swig python_dist
 
 clean: clean_perl clean_python
 
+test: test_perl
+
 perl_swig: $(foreach f,$(SWIGFILES),$(basename $(f)).pm)
-	$(foreach f,$(shell find libbitcoin -name *.cxx.perl),mv $(f) perl/src/$(basename $(f));)
-	$(foreach f,$(shell find libbitcoin -name *.pm),mv $(f) perl/lib/$(f);)
+	$(foreach f,$(shell find libbitcoin -name *.cxx.perl),cp $(f) perl/src/$(basename $(f));)
+	$(foreach f,$(shell find libbitcoin -name *.pm),cp $(f) perl/lib/$(f);)
 
 clean_perl_swig:
 	rm -f $(foreach f,$(SWIGFILES),$(basename $(f)).pm)
@@ -33,7 +35,7 @@ clean_perl_swig:
 
 perl_dist: perl_swig
 	cd perl && $(PERL) Makefile.PL
-	cd perl && make
+	cd perl && make dist
 
 clean_perl_dist:
 	cd perl && make clean || true
@@ -41,14 +43,17 @@ clean_perl_dist:
 clean_perl: clean_perl_dist clean_perl_swig
 
 
+test_perl: perl_dist
+	cd perl && make test
+
 python: python_swig python_dist
 
 python_swig: $(foreach f,$(SWIGFILES),$(basename $(f)).py)
-	$(foreach f,$(shell find libbitcoin -name *.cxx.python),mv $(f) python/$(basename $(f));)
-	$(foreach f,$(shell find libbitcoin -name *.py),mv $(f) python/$(f);)
+	$(foreach f,$(shell find libbitcoin -name *.cxx.python),cp $(f) python/$(basename $(f));)
+	$(foreach f,$(shell find libbitcoin -name *.py),cp $(f) python/$(f);)
 
 python_dist: python_swig
-	cd python && python setup.py build
+	cd python && python setup.py bdist
 
 clean_python: clean_python_swig clean_python_dist
 

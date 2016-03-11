@@ -60,5 +60,9 @@ src/libbitcoin/wallet_wrap.cxx:12431:28: error: no matching function for call to
 %include <bitcoin/bitcoin/wallet/mini_keys.hpp>
 %include <bitcoin/bitcoin/wallet/mnemonic.hpp>
 %include <bitcoin/bitcoin/wallet/qrcode.hpp>
+/*
+    Assertion failed: (Getattr(n, "sym:name")), function enumDeclaration, file Modules/lang.cxx, line 1657.
+    TODO: %include <bitcoin/bitcoin/wallet/select_outputs.hpp> breaks swig > 3.0.2
+*/
 %include <bitcoin/bitcoin/wallet/select_outputs.hpp>
 %include <bitcoin/bitcoin/wallet/settings.hpp>
