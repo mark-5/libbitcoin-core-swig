@@ -1,5 +1,5 @@
 #ifdef SWIGPERL
-%module(package="libbitcoin::math") math
+%module "libbitcoin::math"
 #endif
 #ifdef SWIGPYTHON
 %module(package="libbitcoin.math") math

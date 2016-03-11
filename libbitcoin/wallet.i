@@ -1,5 +1,5 @@
 #ifdef SWIGPERL
-%module(package="libbitcoin::wallet") wallet
+%module "libbitcoin::wallet"
 #endif
 #ifdef SWIGPYTHON
 %module(package="libbitcoin.wallet") wallet

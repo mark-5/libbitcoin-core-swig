@@ -1,5 +1,5 @@
 #ifdef SWIGPERL
-%module(package="libbitcoin::message") message
+%module "libbitcoin::message"
 #endif
 #ifdef SWIGPYTHON
 %module(package="libbitcoin.message") message

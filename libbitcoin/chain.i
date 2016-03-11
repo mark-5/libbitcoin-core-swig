@@ -1,5 +1,5 @@
 #ifdef SWIGPERL
-%module(package="libbitcoin::chain") chain
+%module "libbitcoin::chain"
 #endif
 #ifdef SWIGPYTHON
 %module(package="libbitcoin.chain") chain
